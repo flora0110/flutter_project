@@ -57,20 +57,22 @@ class _State extends State<Home> {
                 //      fontWeight: FontWeight.bold
                 //  ),
                 //),
-                Container(
-                  height: 600,
-                  //padding: const EdgeInsets.all(8),
-                  child :ListView(
-                    children: quotes.map((quote) => QuoteCard(
-                        quote : quote,
-                        delete: (){
-                          setState(() {
-                            quotes.remove(quote);
-                          });
-                        }
-                    )).toList(),
-                  )
+                Expanded(
+                  child: Container(
+                    height: 600,
+                    //padding: const EdgeInsets.all(8),
+                    child :ListView(
+                      children: quotes.map((quote) => QuoteCard(
+                          quote : quote,
+                          delete: (){
+                            setState(() {
+                              quotes.remove(quote);
+                            });
+                          }
+                      )).toList(),
+                    )
 
+                  ),
                 ),
               ]
           ),

@@ -39,8 +39,12 @@ class _InputState extends State<Input> {
     );
   }
   void btnEvent() {
+    if(myController.text==''){
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+    String t = myController.text;
     Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'text' : myController.text
+      'text' : t
     });
     print(myController.text);
   }

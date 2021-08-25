@@ -6,24 +6,28 @@ class Home extends StatefulWidget {
   @override
   _State createState() => _State();
 }
-
+List<Quote> quotes = [
+  Quote(author: 'Oscar Wilde', text: 'Be yourself; everyone else is already taken'),
+  Quote(author: 'Oscar Wilde', text: 'I have nothing to declare except my genius'),
+  Quote(author: 'Oscar Wilde', text: 'The truth is rarely pure and never simple')
+];
 class _State extends State<Home> {
   int q=0;
-  List<Quote> quotes = [
-    Quote(author: 'Oscar Wilde', text: 'Be yourself; everyone else is already taken'),
-    Quote(author: 'Oscar Wilde', text: 'I have nothing to declare except my genius'),
-    Quote(author: 'Oscar Wilde', text: 'The truth is rarely pure and never simple')
-  ];
+
   //String data='';
   @override//用這個build function而非 State<QuoteList> 的
   Widget build(BuildContext context) {
     final route = ModalRoute.of(context);
     if(route==null) print('is null');
     else{
-      final routeArgs = route.settings.arguments;
-      print(routeArgs);
-      quotes.add(Quote(author: 'Oscar Wilde', text:'aa'));
+      dynamic routeArgs = route.settings.arguments;
+      if(routeArgs!=null){
+        print(routeArgs["text"]);
+        quotes.add(Quote(author: 'Oscar Wilde', text:routeArgs["text"]));
+      }
+
     }
+    print(quotes);
     //var data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -54,8 +58,9 @@ class _State extends State<Home> {
                 //  ),
                 //),
                 Container(
-                  child :Column(
-                    //child: Text('aa'),
+                  height: 600,
+                  //padding: const EdgeInsets.all(8),
+                  child :ListView(
                     children: quotes.map((quote) => QuoteCard(
                         quote : quote,
                         delete: (){
@@ -64,10 +69,8 @@ class _State extends State<Home> {
                           });
                         }
                     )).toList(),
-                    //x[].map()依序丟x[]內的東東進function()
-                    //.tolist turn it to list
-                    //(quote) { return QuoteCard(quote : quote)}
-                  ),
+                  )
+
                 ),
               ]
           ),

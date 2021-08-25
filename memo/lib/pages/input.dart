@@ -10,9 +10,9 @@ class Input extends StatefulWidget {
 class _InputState extends State<Input> {
   final TextEditingController textController = new TextEditingController();
   final TextEditingController authorController = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    print('input build');
     return Scaffold(
         appBar: AppBar(
           title: const Text('input'),
@@ -33,10 +33,13 @@ class _InputState extends State<Input> {
                 child: Text('ok'),
                 //onPressed: btnEvent,
                 onPressed: (){
-                  Navigator.pushReplacementNamed(context, '/', arguments: {
+                  print('press ok');
+                  Navigator.pop(context,  {
                     'text' : textController.text,
                     'author':authorController.text
                   });
+                  print('in input');
+                  print(textController.text);
                 },
               )
             ],

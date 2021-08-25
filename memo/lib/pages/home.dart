@@ -17,17 +17,23 @@ class _State extends State<Home> {
   //String data='';
   @override//用這個build function而非 State<QuoteList> 的
   Widget build(BuildContext context) {
+    /*print('home build');
+    print(context);
     final route = ModalRoute.of(context);
     if(route==null) print('is null');
     else{
+      print('else');
+      print(route);
       dynamic routeArgs = route.settings.arguments;
       if(routeArgs!=null){
         print(routeArgs["text"]);
-        quotes.add(Quote(author: routeArgs["author"], text:routeArgs["text"]));
+        //if(routeArgs["text"]!=''){
+          quotes.add(Quote(author: routeArgs["author"], text:routeArgs["text"]));
+        //}
       }
-
     }
-    print(quotes);
+    print('in home');
+    print(quotes);*/
     //var data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -66,7 +72,12 @@ class _State extends State<Home> {
                           quote : quote,
                           delete: (){
                             setState(() {
+                              print('delete');
+                              print(quotes);
                               quotes.remove(quote);
+
+                              print(quotes);
+                              print('over');
                             });
                           }
                       )).toList(),
@@ -79,8 +90,13 @@ class _State extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context,'/input');
+        onPressed: ()async{
+          dynamic result = await Navigator.pushNamed(context,'/input');
+          if(result != null){
+            setState(() {
+              quotes.add(Quote(author: result["author"], text:result["text"]));
+            });
+          }
           //setState(() {
            // q+=1;
           //});

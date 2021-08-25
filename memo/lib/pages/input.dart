@@ -25,7 +25,12 @@ class _InputState extends State<Input> {
               ),
               ElevatedButton(
                 child: Text('印出輸入框內容'),
-                onPressed: btnEvent,
+                //onPressed: btnEvent,
+                onPressed: (){
+                  Navigator.pushReplacementNamed(context, '/', arguments: {
+                    'text' : myController.text
+                  });
+                },
               )
             ],
           ),
@@ -34,33 +39,9 @@ class _InputState extends State<Input> {
     );
   }
   void btnEvent() {
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'text' : myController.text
+    });
     print(myController.text);
-  }
-}
-
-class AutocompleteBasicExample extends StatelessWidget {
-  const AutocompleteBasicExample({Key? key}) : super(key: key);
-
-  static const List<String> _kOptions = <String>[
-    'aardvark',
-    'bobcat',
-    'chameleon',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Autocomplete<String>(
-      optionsBuilder: (TextEditingValue textEditingValue) {
-        if (textEditingValue.text == '') {
-          return const Iterable<String>.empty();
-        }
-        return _kOptions.where((String option) {
-          return option.contains(textEditingValue.text.toLowerCase());
-        });
-      },
-      onSelected: (String selection) {
-        print('You just selected $selection');
-      },
-    );
   }
 }

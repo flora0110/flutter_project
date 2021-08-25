@@ -14,8 +14,17 @@ class _State extends State<Home> {
     Quote(author: 'Oscar Wilde', text: 'I have nothing to declare except my genius'),
     Quote(author: 'Oscar Wilde', text: 'The truth is rarely pure and never simple')
   ];
+  //String data='';
   @override//用這個build function而非 State<QuoteList> 的
   Widget build(BuildContext context) {
+    final route = ModalRoute.of(context);
+    if(route==null) print('is null');
+    else{
+      final routeArgs = route.settings.arguments;
+      print(routeArgs);
+      quotes.add(Quote(author: 'Oscar Wilde', text:'aa'));
+    }
+    //var data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(

@@ -23,7 +23,7 @@ class _State extends State<Home> {
       dynamic routeArgs = route.settings.arguments;
       if(routeArgs!=null){
         print(routeArgs["text"]);
-        quotes.add(Quote(author: 'Oscar Wilde', text:routeArgs["text"]));
+        quotes.add(Quote(author: routeArgs["author"], text:routeArgs["text"]));
       }
 
     }

@@ -8,7 +8,9 @@ class Input extends StatefulWidget {
 }
 
 class _InputState extends State<Input> {
-  final TextEditingController myController = new TextEditingController();
+  final TextEditingController textController = new TextEditingController();
+  final TextEditingController authorController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,15 +22,20 @@ class _InputState extends State<Input> {
           child: Column(
             children: <Widget>[
               TextField(
-                controller: myController,
-                decoration: InputDecoration(hintText: '請輸入...'),
+                controller: textController,
+                decoration: InputDecoration(hintText: '請輸入內容'),
+              ),
+              TextField(
+                controller: authorController,
+                decoration: InputDecoration(hintText: '請輸入作者'),
               ),
               ElevatedButton(
-                child: Text('印出輸入框內容'),
+                child: Text('ok'),
                 //onPressed: btnEvent,
                 onPressed: (){
                   Navigator.pushReplacementNamed(context, '/', arguments: {
-                    'text' : myController.text
+                    'text' : textController.text,
+                    'author':authorController.text
                   });
                 },
               )
@@ -38,14 +45,5 @@ class _InputState extends State<Input> {
 
     );
   }
-  void btnEvent() {
-    if(myController.text==''){
-      Navigator.pushReplacementNamed(context, '/home');
-    }
-    String t = myController.text;
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'text' : t
-    });
-    print(myController.text);
-  }
+
 }

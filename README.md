@@ -1,2 +1,2 @@
 # flutter_project   
-![image](/image/memo_show.gif)
+<!-- ![image](/image/memo_show.gif) -->

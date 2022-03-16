@@ -23,7 +23,7 @@ class menu extends StatelessWidget {
                     children: const [
                       CircleAvatar(
                         radius: 60.0,
-                        backgroundImage: NetworkImage('https://github.com/Edmond-Yang/Flutter_Widget/blob/master/person.jpg?raw=true'),
+                        backgroundImage: NetworkImage('https://i.imgur.com/ainbX0w.jpg'),
                       ),
                       SizedBox(height: 20),
                       Text("Name",

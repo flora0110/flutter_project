@@ -73,7 +73,14 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(10.0),
                     child: Text("Customize")
                 ),
-                onPressed: () async{
+                onPressed: () {
+                  setState(() {
+                    tasks.add("Customize");
+                  });
+                  Navigator.of(context).pop();
+                }
+                /*async{
+
 
                   var future = await Future(() {
                     setState(() {
@@ -83,7 +90,7 @@ class _TaskState extends State<Task> {
 
                   Navigator.of(context).pop();
 
-                },
+                },*/
               ),
               SimpleDialogOption(
                 child: Container(
@@ -92,15 +99,13 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(10.0),
                     child: Text("Studying")
                 ),
-                onPressed: () async{
-
-                  var future = await Future(() {
-                    setState(() {
-                      tasks.add("Studying");
-                    });
+                onPressed: () {
+                  setState(() {
+                    tasks.add("Studying");
                   });
                   Navigator.of(context).pop();
-                },
+                }
+
               ),
               SimpleDialogOption(
                 child: Container(
@@ -109,12 +114,11 @@ class _TaskState extends State<Task> {
                     padding: const EdgeInsets.all(10.0),
                     child: Text("Sport")
                 ),
-                onPressed: () async{
-                  var future = await Future(() {
+                onPressed: () {
                   setState(() {
                   tasks.add("Sport");
                   });
-                  });
+
                   Navigator.of(context).pop();
                 },
               ),
